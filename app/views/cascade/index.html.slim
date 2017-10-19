@@ -1,11 +1,10 @@
 .div style= "padding:80px;text-align:center;"
   -if params[:user_name].present? && params[:hard_del].present?
     .alert_msg style="background: #22b946;padding:11px;color: white;"
-      -if params[:hard_del] == true
-        = "#{params[:user_name]} was recently been permanently deleted"
+      -if params[:hard_del] == "true"
+        = "#{params[:user_name]} was recently been permanently deleted and all its associations been destroyed"
       -else
-        = "#{params[:user_name]} was recently been soft deleted and all its associations been destroyed."
-
+        = "#{params[:user_name]} was recently been soft deleted"
   h1 Cascade delete
   -if @users.where.not(deleted_at: nil).present?
     = link_to "Soft Deleted Users", "#", class: "ui orange button"
@@ -17,6 +16,7 @@
         th Name
         th Email
         th User jobs
+        th Jobs tasks 
         th Soft Delete
         th Hard Delete
     tbody
@@ -26,6 +26,7 @@
           td = user.name
           td = user.email
           td = user.jobs.count
+          td = Task.where(job_id: [user.jobs.pluck(:id)]).count
           td = link_to "Soft Delete", soft_delete_cascade_index_path(user_id: user.id), method: :post, class: "ui green button"
           td = link_to "Hard Delete", hard_delete_cascade_index_path(user_id: user.id), method: :delete, class: "ui red button"
 
@@ -38,11 +39,17 @@
         th User Id
         th Name
         th Email
+        th User jobs
+        th Jobs tasks 
         th Deleted At
+        th Undo Soft Delete
     tbody
       - @soft_deleted_users.each do |user|
         tr
           td = user.id
           td = user.name
           td = user.email
+          td = user.jobs.count
+          td = Task.where(job_id: [user.jobs.pluck(:id)]).count
           td = user.deleted_at.strftime("%A, %d %b %y - %H:%M")
+          td = link_to "Undo Delete", undo_soft_delete_cascade_index_path(user_id: user.id), method: :post, class: "ui green button"
