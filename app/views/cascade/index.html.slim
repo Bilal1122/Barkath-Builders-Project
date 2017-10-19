@@ -6,8 +6,10 @@
       -else
         = "#{params[:user_name]} was recently been soft deleted"
   h1 Cascade delete
-  -if @users.where.not(deleted_at: nil).present?
-    = link_to "Soft Deleted Users", "#", class: "ui orange button"
+  br
+  p = "Users Count: #{User.count}"
+  p = "Jobs Count: #{Job.count}"
+  p = "Tasks Count: #{Task.count}"
   br
   table.ui.fixed.single.line.celled.table
     thead
