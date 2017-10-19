@@ -1,0 +1,48 @@
+.div style= "padding:80px;text-align:center;"
+  -if params[:user_name].present? && params[:hard_del].present?
+    .alert_msg style="background: #22b946;padding:11px;color: white;"
+      -if params[:hard_del] == true
+        = "#{params[:user_name]} was recently been permanently deleted"
+      -else
+        = "#{params[:user_name]} was recently been soft deleted and all its associations been destroyed."
+
+  h1 Cascade delete
+  -if @users.where.not(deleted_at: nil).present?
+    = link_to "Soft Deleted Users", "#", class: "ui orange button"
+  br
+  table.ui.fixed.single.line.celled.table
+    thead
+      tr
+        th User Id
+        th Name
+        th Email
+        th User jobs
+        th Soft Delete
+        th Hard Delete
+    tbody
+      - @users.each do |user|
+        tr
+          td = user.id
+          td = user.name
+          td = user.email
+          td = user.jobs.count
+          td = link_to "Soft Delete", soft_delete_cascade_index_path(user_id: user.id), method: :post, class: "ui green button"
+          td = link_to "Hard Delete", hard_delete_cascade_index_path(user_id: user.id), method: :delete, class: "ui red button"
+
+  br
+  br
+  h1 Soft Deleted Users
+  table.ui.fixed.single.line.celled.table
+    thead
+      tr
+        th User Id
+        th Name
+        th Email
+        th Deleted At
+    tbody
+      - @soft_deleted_users.each do |user|
+        tr
+          td = user.id
+          td = user.name
+          td = user.email
+          td = user.deleted_at.strftime("%A, %d %b %y - %H:%M")
