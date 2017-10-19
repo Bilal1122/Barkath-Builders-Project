@@ -1,8 +1,8 @@
 class CascadeController < ApplicationController
 
   def index
-    @users = User.all.where(deleted_at: nil).order(created_at: :asc)
-    @soft_deleted_users = User.all.where.not(deleted_at: nil).order(created_at: :asc)
+    @users = User.active
+    @soft_deleted_users = User.soft_deleted
   end
 
   def hard_delete
