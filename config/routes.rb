@@ -6,5 +6,8 @@ Rails.application.routes.draw do
     post :soft_delete, on: :collection
     post :undo_soft_delete, on: :collection
   end
+
+  root 'cascade#index'
+  get '*path' => redirect('/')
   
 end
