@@ -15,12 +15,10 @@ class DeletionService
   end
 
   def soft_delete
-    # binding.pry
     if @user.present?
       @user.update(deleted_at: Time.now)
       @success = true
     end
-    # binding.pry
     return {success: @success, user_name: @user_name, hard_del: false}
   end
 end
