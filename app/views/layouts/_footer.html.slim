@@ -1,0 +1,60 @@
+.footer
+  .contact-form
+    .overlay
+      .content
+        h1 Free Gift For you
+        h3.centered Start build and renovating you house with us
+        .ui.form.form_padding
+          =form_tag(submit_form_pages_path, method: "post")
+            .field.form_div
+              .two.fields
+                .field
+                  label Name
+                  input type="text" name="name" class="text_field" placeholder="Danial"
+                .field
+                  label Phone Number
+                  input type="text" name="business_name" class="text_field"  placeholder="0182661782"
+              br
+              .two.fields
+                .field
+                  label Email
+                  input type="text" name="email" class="text_field"  placeholder="Danial@malaysia.com"
+                .field
+                  label Your CSV File
+                  input type="text" name="phone" class="text_field"  placeholder="Upload your file"
+            br
+            = hidden_field_tag "country","MY"
+            .centered
+              =submit_tag 'CONTACT US', class: 'ui secondary button form_submit_button'
+
+
+  .content_div style="padding-top: 3%;padding-bottom: 6%;"
+    .ui.grid
+      .one.wide.column
+      .six.wide.mobile.three.wide.tablet.three.wide.computer.column style="text_align:right;"
+        .header.item 
+          |Barkath  
+          br
+          p style="font-weight: 300;"= " Builders"
+
+      .sixteen.wide.mobile.six.wide.tablet.six.wide.computer.column
+        =link_to "ABOUT US", "#", class: "footer_link"
+        =link_to "OUR WORK", "#", class: "footer_link", style: "margin-left: 45px;"
+        =link_to "CAREERS", "#", class: "footer_link", style: "margin-left: 45px;"
+        br
+        br
+        =link_to "CONTACT", "#", class: "footer_link"
+        =link_to "HOME", "#", class: "footer_link", style: "margin-left: 45px;"
+            
+      .sixteen.wide.mobile.four.wide.tablet.four.wide.computer.only.column style="margin-left: -11px;"
+        .ui.grid
+          .eight.wide.computer.column
+            p.social_header SOCIAL MEDIA
+            br
+            i.facebook.icon style="font-size: 35px;"
+            i.linkedin.square.icon style="font-size: 35px;"
+          .eight.wide.computer.column
+            p.social_header CERTIFICATIONS
+            br
+            i.facebook.icon style="font-size: 35px;"
+            i.linkedin.square.icon style="font-size: 35px;"

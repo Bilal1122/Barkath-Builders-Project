@@ -1,0 +1,120 @@
+br
+br
+br
+br
+br
+br
+br
+br
+.main_banneer.banner
+  .overlay
+    h1
+      |We Build the house of 
+      b Tomorrow
+    h2 We have a mission to continuosly help clients acheieves their dream design with interiors.
+    =link_to "Start with Free Credits", "#", class: 'ui secondary button business_get_started'
+
+.grow_wrap.wrap
+  .content
+    h1 
+      |WHAT 
+      span style="font-weight: 300;" WE CAN DO FOR YOUR HOUSE
+    br
+    br
+    .ui.grid.stackable.grow
+      .four.wide.column.grow_column
+        .image
+          =image_tag('exterior.png', class: 'benefits_icon')
+        h2
+          |EXTERIOR
+        h3 Description Here
+      .four.wide.column.grow_column
+        .image
+          =image_tag('Interior.png', class: 'benefits_icon')
+        h2
+          |INTERIOR
+        h3 Description Here
+      .four.wide.column.grow_column.column_last
+        .image
+          =image_tag('home-icon.png', class: 'benefits_icon')
+        h2
+          |NEW HOMES
+        h3 Description Here
+
+.featured_div
+  h1
+    |Featured 
+    span style="font-weight: 300;" Project
+  br
+  br
+  -if @featured_project.present?
+    .ui.three.stackable.cards style ="padding: 1px 60px 1px 60px;"
+      - @featured_project.each do |project|
+        .card
+          .image 
+            = image_tag(project.attachment.url)
+          .content
+            .header
+              = project.title
+            .description
+              = project.description
+            br
+            .client_des = "Client:  #{project.client_name}"
+            .client_des = "Project Started:  #{project.project_start.strftime("%A, %d %b %y - %H:%M")}"
+            .client_des = "Project Ended:  #{project.project_end.strftime("%A, %d %b %y - %H:%M")}"
+    br
+    br
+    = link_to "View All", featured_projects_pages_path, class: "ui basic button"
+  -else
+    h1 style="margin: auto;"
+      |No Featured Projects
+
+.lets_chat_div
+  |Want to create unique 
+  b project with us?
+  = link_to "LET'S  CHAT", "#", class: "ui teal button btn"
+
+.gallery_div
+  .header
+    b OUR
+    |GALLERY
+  br
+  br
+  .ui.three.stackable.cards style ="padding: 1px 60px 1px 60px;"
+    - @gallery.each do |gallery_img|
+      .card
+        .image
+          =image_tag(gallery_img.attachment.url)
+  br
+  br
+  = link_to "VIEW ALL", gallery_pages_path, class: "ui button btn"
+
+.customers_div
+  h1
+    |THOUSANDS OF 
+    span style="font-weight: 300;" SATISFIED CUSTOMERS
+  br
+  br
+  .ui.three.stackable.cards style="padding: 1px 160px 1px 160px;"
+    - 3.times.each do ||
+      .card
+        .content
+          .description
+            | Description Here
+          br
+          .image
+            =image_tag('testimonial.jpg', class: 'benefits_icon')
+          br   
+          .description
+            | Ramili Bin Saad
+          br
+          br
+          = link_to "VIEW PROJECT", "#", class: "ui basic button view_project_btn"
+
+.partner_div
+  h1
+    |PARTNER 
+    span style="font-weight: 300;" WITH US
+  br
+  br
+      

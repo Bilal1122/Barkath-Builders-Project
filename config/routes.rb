@@ -1,13 +1,14 @@
 Rails.application.routes.draw do
+  mount RailsAdmin::Engine => '/barkath/builders/admin', as: 'rails_admin'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
-  resources :cascade, only: [:index] do
-    delete :hard_delete, on: :collection
-    post :soft_delete, on: :collection
-    post :undo_soft_delete, on: :collection
+  resources :pages, only: [:index] do
+    post :submit_form, on: :collection
+    get :featured_projects, on: :collection
+    get :gallery, on: :collection
   end
 
-  root 'cascade#index'
+  root 'pages#index'
   get '*path' => redirect('/')
   
 end

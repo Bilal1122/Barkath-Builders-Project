@@ -1,0 +1,20 @@
+br
+br
+br
+br
+br
+br
+br
+br
+br
+.gallery_div style="background: white;"
+  .header style="color: black;"
+    b OUR
+    |GALLERY
+  br
+  br
+  .ui.three.stackable.cards style ="padding: 1px 60px 1px 60px;"
+    - @gallery.each do |gallery_img|
+      .card
+        .image
+          =image_tag(gallery_img.attachment.url)

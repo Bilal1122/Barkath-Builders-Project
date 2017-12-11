@@ -1,0 +1,12 @@
+.top_header style="position: fixed;width: 100%;z-index: 100;"
+  =image_tag('add-banner.png', style: "width: 100%;margin-bottom: -26px;")
+  .ui.menu.header_menu
+    .header.item 
+      |Barkath  
+      br
+      p style="font-weight: 300;"= " Builders"
+    .right.menu
+      .item = link_to "Home", pages_path, style: "color: white;"
+      .item = link_to "Featured", featured_projects_pages_path, style: "color: white;"
+      .item = link_to "Gallery", gallery_pages_path, style: "color: white;"
+      .item About

@@ -1,0 +1,33 @@
+br
+br
+br
+br
+br
+br
+br
+br
+br
+.featured_div
+  h1
+    |Featured 
+    span style="font-weight: 300;" Project
+  br
+  br
+  .ui.three.stackable.cards style ="padding: 1px 60px 1px 60px;"
+    -if @featured_project.present?
+      - @featured_project.each do |project|
+        .card
+          .image
+            = image_tag(project.attachment.url)
+          .content
+            .header
+              = project.title
+            .description
+              = project.description
+            br
+            .client_des = "Client:  #{project.client_name}"
+            .client_des = "Project Started:  #{project.project_start.strftime("%A, %d %b %y - %H:%M")}"
+            .client_des = "Project Ended:  #{project.project_end.strftime("%A, %d %b %y - %H:%M")}"
+    -else
+      h1 style="margin: auto;"
+        |No Featured Projects
